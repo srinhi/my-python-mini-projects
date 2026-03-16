@@ -16,6 +16,9 @@ def divide(a,b):
         return "Invalid input. Please enter numbers only."
 
 
+
+file = open("calculator_log.txt", "a")
+
 while True:
     val = input("Enter an operation (add, subtract, multiply, divide): ")
     
@@ -27,15 +30,19 @@ while True:
     b = float(input("Enter your second number: "))
 
     if(val == "add"):
-        print(add(a,b))
+        result = add(a,b)
     elif(val == "subtract"):
-        print(subtract(a,b))
+        result = subtract(a,b)
     elif(val == "multiply"):
-        print(multiply(a,b))
+        result = multiply(a,b)
     elif(val == "divide"):
-        print(divide(a,b))
-    
+        result = divide(a,b)
+
+    print(result)
+    file.write(f"{a} {val} {b} = {result}\n")
+
     again = input("Do you want to perform another operation? (yes/no): ")
+    
 
     while(again != "yes" and again != "no"):
         again = input("Please enter a valid response (yes/no): ")
@@ -43,7 +50,8 @@ while True:
     if (again == "no"):
         break
 
-print("Goodbye!")    
+print("Goodbye!")
+file.close()    
 
     
 
